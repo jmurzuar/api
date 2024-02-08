@@ -8,9 +8,9 @@
 function consumirAPI() {
     var usuario = 'webapiqa';
     var contrasena = '#$webpiqa#$';
-    var fh_desde = document.getElementById("fh_desde").value;
-    var fh_hasta = document.getElementById("fh_hasta").value;
-    var clase_transporte = document.getElementById("clase_transporte").value;
+    var fh_desde = '20240208 00:00';
+    var fh_hasta = '20240208 23:59';
+    var clase_transporte = 'nacional';
 
     var url = "https://ww4.qanalytics.cl/API_Agrosuper_BI_RetornaDatos_ReporteDetalleViajeSAP/WebApi";
     url += "?usuario=" + encodeURIComponent(usuario);
