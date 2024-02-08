@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consumir API con HTML</title>
+<script>
+function consumirAPI() {
+    var usuario = 'webapiqa';
+    var contrasena = '#$webpiqa#$';
+    var fh_desde = document.getElementById("fh_desde").value;
+    var fh_hasta = document.getElementById("fh_hasta").value;
+    var clase_transporte = document.getElementById("clase_transporte").value;
+
+    var url = "https://ww4.qanalytics.cl/API_Agrosuper_BI_RetornaDatos_ReporteDetalleViajeSAP/WebApi";
+    url += "?usuario=" + encodeURIComponent(usuario);
+    url += "&contrasena=" + encodeURIComponent(contrasena);
+    url += "&fh_desde=" + encodeURIComponent(fh_desde);
+    url += "&fh_hasta=" + encodeURIComponent(fh_hasta);
+    url += "&clase_transporte=" + encodeURIComponent(clase_transporte);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url, true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            console.log(response);
+            // Aquí puedes manejar la respuesta como desees
+        }
+    };
+    xhr.send();
+}
+</script>
+</head>
+<body>
+    <h1>Consumir API con HTML</h1>
+    <form onsubmit="event.preventDefault(); consumirAPI();">        
+        <label for="fh_desde">Fecha y hora desde:</label>
+        <input type="datetime-local" id="fh_desde" name="fh_desde"><br><br>
+        
+        <label for="fh_hasta">Fecha y hora hasta:</label>
+        <input type="datetime-local" id="fh_hasta" name="fh_hasta"><br><br>
+        
+        <label for="clase_transporte">Clase de transporte:</label>
+        <input type="text" id="clase_transporte" name="clase_transporte" value="nacional"><br><br>
+        
+        <button type="submit">Enviar solicitud</button>
+    </form>
+</body>
+</html>
